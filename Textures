@@ -1,0 +1,93 @@
+        
+Texture Mappings
+
+*****Plane:
+
+A-0
+	#V3.append((V2[v][0], .25*math.sin((i/30)*V2[v][0])*math.sin((i/30)*V2[v][2]), V2[v][2])) 
+
+        #V3.append((V2[v][0] 
+        #          ,-.1*(math.log(2+abs(math.sin(2*math.pi*i/30))))*math.exp(.5*math.cos(2*math.pi*i/30)+math.cos(10*(math.sin(2*math.pi*i/30)*V2[v][0]+V2[v][2])))-.1*math.exp(-math.sin(10*V2[v][0]+math.cos(2*math.pi*i/30)))
+        #          ,V2[v][2]))
+
+C-0 
+	#VMOD = .10*abs(sin(.5*(cos(2*pi*i/30)*x-y+1.2*sin(2*pi*i/30)))+.5*sin(2*pi*i/30)*cos(x-cos(2*pi*i/30)+y)+sin(y+cos(4*pi*i/30)))
+
+F-0
+	VMOD = .1*abs(exp(sin(x)*sin(2*pi*i/30)+cos(y))*(sin(y)*sin(2*pi*i/30)+cos(x)))
+
+G-0
+        VMOD = .01*(y*cos(x+sin(2*pi*i/30))+x*sin(y+cos(2*pi*i/30)))+.01*exp(sin(x+y)) 
+
+H-0
+ 	VMOD = 3*sin(cos(sin(cos(sin(cos(sin(x+y))))))+4*sin(cos(sin(cos(sin(cos(x-y))))))+cos(x)+sin(y)+cos(y)+sin(x))
+
+H-1
+        VMOD = 3*sin(cos(sin(cos(sin(cos(sin(x+y)+sin(2*pi*i/30)))+cos(2*pi*i/30))))+4*sin(cos(sin(cos(sin(cos(x-y))))))+cos(x)+sin(y)+cos(y)+sin(x))
+
+H-2
+        VMOD = 3*sin(cos(sin(cos(sin(cos(sin(x+y)+sin(2*pi*i/30)))+cos(2*pi*i/30))))+4*sin(cos(sin(cos(sin(cos(x-y)+sin(2*pi*i/30)))-cos(2*pi*i/30))))+cos(x+sin(2*pi*i/30))+sin(y)+cos(y)+sin(x))
+
+I-0
+      VMOD = abs(sin(x)*sin(2*pi*i/30)+cos(y)-cos(2*pi*i/30))*log(sin(x)+sin(2*pi*i/30)+cos(y)+2)
+
+I-1
+      VMOD = abs(sin(x)*sin(2*pi*i/30)+cos(y)-cos(2*pi*i/30))*log(sin(x)+cos(y)+2)*sin(2*pi*i/30)
+
+
+
+*****Cylinder:
+
+C-0 
+      VMOD = 10+.3*abs(sin(.5*(cos(2*pi*i/30)*10*z-10*phi+1.2*sin(2*pi*i/30)))+.5*sin(2*pi*i/30)*cos(10*z-cos(2*pi*i/30)+10*phi)+sin(10*phi+cos(4*pi*i/30)))
+
+D-0 
+	VMOD = 1-.25*(exp(sin(7*phi+cos(2*pi*i/30)))+exp(-cos(5*z-cos(2*pi*i/30))))
+
+E-0
+  	#VMOD = 1.5-.1*(sin(2*pi*i/30)*exp(cos(12*phi+z*sin(2*pi*i/30)+cos(2*pi*i/30)))+exp(-sin(10*z)))
+
+
+
+
+
+
+*****Sphere: 
+E-0/1     **import with sphere.obj or cylinder.obj**
+	VMOD = (2-.12*(exp(sin(10*phi+cos(2*pi*i/30)))+sin(2*pi*i/30)*exp(-cos(7*theta-cos(2*pi*i/30)))))
+
+E-2 
+       theta = acos(float(V[v][1])/r)
+        phi = atan2(float(V[v][2]),float(V[v][0]))
+        if theta != 0:
+            phi2 = phi/theta
+        else :
+            phi2 = 1      
+        VMOD = (2-.12*(exp(sin(10*phi2+cos(2*pi*i/30)))+sin(2*pi*i/30)*exp(-cos(7*theta-cos(2*pi*i/30)))))
+       
+E-3/4 	Same as E-2 with 
+	phi2 = phi/sin(theta) and
+	phi2 = phi*sin(theta)
+
+E-5
+       VMOD = (2-.12*(exp(sin(10*phi2+cos(2*pi*i/30)))+sin(2*pi*i/30)*exp(-cos(10*theta-cos(2*pi*i/30)))))
+
+F-0
+        VMOD = .05*abs(exp(sin(1.5*x)*sin(2*pi*i/30)+cos(1.5*y))*(sin(1.5*y)*sin(2*pi*i/30)+cos(1.5*x)))
+        
+F-1
+	VMOD = 1+.05*abs(exp(sin(15*phi2)*sin(2*pi*i/30)+cos(15*theta))*(sin(15*theta)*sin(2*pi*i/30)+cos(15*phi2)))
+        
+F-2 
+	phi2 = phi*(1/theta)
+
+F-3
+        VMOD = 1+.05*abs(exp(sin(15*phi2/(theta+1))*sin(2*pi*i/30)+cos(15*theta))*(sin(15*theta)*sin(2*pi*i/30)+cos(15*phi2)))
+
+
+
+
+
+
+
+
